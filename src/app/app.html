@@ -1,0 +1,184 @@
+<!-- Navbar -->
+<nav class="navbar" [class.scrolled]="isScrolled">
+  <div class="nav-container">
+    <a class="nav-logo" (click)="scrollTo('hero')">
+      <img src="images/logo_corjuc_imobiliare.png" alt="Corjuc Imobiliare Logo" class="logo-img" />
+      <div class="logo-text-wrap">
+        <span class="logo-text">Corjuc</span>
+        <span class="logo-accent">Imobiliare</span>
+      </div>
+    </a>
+    <div class="nav-links" [class.open]="menuOpen">
+      <a (click)="scrollTo('hero'); menuOpen = false">{{ t().nav.home }}</a>
+      <a (click)="scrollTo('about'); menuOpen = false">{{ t().nav.about }}</a>
+      <a (click)="scrollTo('projects'); menuOpen = false">{{ t().nav.projects }}</a>
+      <a (click)="scrollTo('video'); menuOpen = false">{{ t().nav.video }}</a>
+      <a (click)="scrollTo('contact'); menuOpen = false">{{ t().nav.contact }}</a>
+      <button class="lang-toggle" (click)="toggleLang()">
+        {{ lang() === 'ro' ? 'EN' : 'RO' }}
+      </button>
+    </div>
+    <div class="nav-right-mobile">
+      <button class="lang-toggle-mobile" (click)="toggleLang()">
+        {{ lang() === 'ro' ? 'EN' : 'RO' }}
+      </button>
+      <button class="hamburger" (click)="menuOpen = !menuOpen" [class.active]="menuOpen">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero Section -->
+<section id="hero" class="hero">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <img src="images/logo_corjuc_imobiliare.png" alt="Corjuc Imobiliare" class="hero-logo" />
+    <h1>{{ t().hero.tagline }}</h1>
+    <p>{{ t().hero.subtitle }}</p>
+    <button class="btn-primary" (click)="scrollTo('projects')">{{ t().hero.cta }}</button>
+  </div>
+</section>
+
+<!-- About Section -->
+<section id="about" class="about">
+  <div class="container">
+    <h2 class="section-title">{{ t().about.title }}</h2>
+    <div class="about-content">
+      <div class="about-text">
+        <p>{{ t().about.p1 }}</p>
+        <p>{{ t().about.p2 }}</p>
+      </div>
+      <div class="about-stats">
+        <div class="stat">
+          <span class="stat-value">{{ t().about.stat1Value }}</span>
+          <span class="stat-label">{{ t().about.stat1Label }}</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value">{{ t().about.stat2Value }}</span>
+          <span class="stat-label">{{ t().about.stat2Label }}</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value">{{ t().about.stat3Value }}</span>
+          <span class="stat-label">{{ t().about.stat3Label }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Projects Section -->
+<section id="projects" class="projects">
+  <div class="container">
+    <h2 class="section-title">{{ t().projects.title }}</h2>
+    <p class="section-subtitle">{{ t().projects.subtitle }}</p>
+    <div class="filter-buttons">
+      @for (cat of categories; track cat.key) {
+        <button
+          [class.active]="activeCategory() === cat.key"
+          (click)="setCategory(cat.key)"
+        >
+          {{ t().projects.categories[cat.key] }}
+        </button>
+      }
+    </div>
+    <div class="gallery">
+      @for (img of filteredImages(); track img.src) {
+        <div class="gallery-item" (click)="openLightbox(img)">
+          <img [src]="img.src" [alt]="img.alt" loading="lazy" />
+          <div class="gallery-overlay">
+            <span>{{ img.label[lang()] }}</span>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Video Section -->
+<section id="video" class="video-section">
+  <div class="container">
+    <h2 class="section-title">{{ t().video.title }}</h2>
+    <p class="section-subtitle">{{ t().video.subtitle }}</p>
+    <div class="video-wrapper">
+      <iframe
+        src="https://www.youtube.com/embed/L5lAzvSah6E"
+        title="Corjuc Imobiliare"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+      ></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="contact">
+  <div class="container">
+    <h2 class="section-title">{{ t().contact.title }}</h2>
+    <p class="section-subtitle">{{ t().contact.subtitle }}</p>
+    <div class="contact-content contact-content--centered">
+      <div class="contact-info contact-info--grid">
+        <a href="tel:+40752972832" class="contact-card">
+          <div class="contact-icon phone-icon"></div>
+          <h3>{{ t().contact.phone }}</h3>
+          <span>0752 972 832</span>
+        </a>
+        <a href="mailto:corneliucorjuc@gmail.com" class="contact-card">
+          <div class="contact-icon email-icon"></div>
+          <h3>{{ t().contact.email }}</h3>
+          <span>corneliucorjuc&#64;gmail.com</span>
+        </a>
+        <a href="https://wa.me/40752972832" target="_blank" class="contact-card">
+          <div class="contact-icon whatsapp-icon"></div>
+          <h3>{{ t().contact.whatsapp }}</h3>
+          <span>0752 972 832</span>
+        </a>
+        <a href="https://instagram.com/corjucimobiliare" target="_blank" class="contact-card">
+          <div class="contact-icon instagram-icon"></div>
+          <h3>{{ t().contact.instagram }}</h3>
+          <span>&#64;corjucimobiliare</span>
+        </a>
+      </div>
+      <div class="contact-cta">
+        <button class="btn-primary" (click)="sendEmail()">{{ t().contact.sendEmail }}</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <img src="images/logo_corjuc_imobiliare.png" alt="Corjuc Imobiliare" class="footer-logo" />
+        <div>
+          <span class="logo-text">Corjuc</span>
+          <span class="logo-accent">Imobiliare</span>
+          <p>{{ t().footer.tagline }}</p>
+        </div>
+      </div>
+      <div class="footer-contact">
+        <p>Corjuc Corneliu</p>
+        <p>Tel: 0752 972 832</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2024 Corjuc Imobiliare SRL. {{ t().footer.rights }}</p>
+    </div>
+  </div>
+</footer>
+
+<!-- Lightbox with navigation -->
+@if (lightboxImage) {
+  <div class="lightbox" (click)="closeLightbox()">
+    <button class="lightbox-close" (click)="closeLightbox()">&times;</button>
+    <button class="lightbox-nav lightbox-prev" (click)="prevImage($event)">&#8249;</button>
+    <img [src]="lightboxImage.src" [alt]="lightboxImage.alt" (click)="$event.stopPropagation()" />
+    <button class="lightbox-nav lightbox-next" (click)="nextImage($event)">&#8250;</button>
+    <div class="lightbox-caption" (click)="$event.stopPropagation()">
+      {{ lightboxImage.label[lang()] }}
+    </div>
+  </div>
+}
