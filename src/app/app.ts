@@ -6,6 +6,7 @@ interface GalleryImage {
   alt: string;
   category: string;
   label: { ro: string; en: string };
+  specs?: { rooms?: string; area?: string; price?: string };
 }
 
 @Component({
@@ -26,30 +27,50 @@ export class App {
   lightboxIndex = 0;
 
   images: GalleryImage[] = [
-    {
-      src: 'images/casa-garage.jpg',
-      alt: 'Casa individuala cu garaj',
-      category: 'houses',
-      label: { ro: 'Casă Individuală cu Garaj', en: 'Individual House with Garage' },
-    },
-    {
-      src: 'images/casa-individuala.jpg',
-      alt: 'Casa individuala',
-      category: 'houses',
-      label: { ro: 'Casă Individuală', en: 'Individual House' },
-    },
-    {
-      src: 'images/duplex.jpg',
-      alt: 'Duplex',
-      category: 'duplex',
-      label: { ro: 'Duplex', en: 'Duplex' },
-    },
+    // Apartments
     {
       src: 'images/bloc-apartamente.jpg',
       alt: 'Bloc de apartamente',
       category: 'apartments',
       label: { ro: 'Bloc de Apartamente', en: 'Apartment Building' },
+      specs: { rooms: '2-4', area: '38-80 mp', price: '1.500 €/mp' },
     },
+    {
+      src: 'images/bloc-frontal.jpeg',
+      alt: 'Bloc de apartamente - vedere frontala',
+      category: 'apartments',
+      label: { ro: 'Bloc de Apartamente - Frontal', en: 'Apartment Building - Front' },
+      specs: { rooms: '2-4', area: '38-80 mp', price: '1.500 €/mp' },
+    },
+    {
+      src: 'images/bloc-lateral.jpeg',
+      alt: 'Bloc de apartamente - vedere laterala',
+      category: 'apartments',
+      label: { ro: 'Bloc de Apartamente - Lateral', en: 'Apartment Building - Side' },
+      specs: { rooms: '2-4', area: '38-80 mp', price: '1.500 €/mp' },
+    },
+    {
+      src: 'images/balcon-vedere.jpg',
+      alt: 'Vedere de pe balcon',
+      category: 'apartments',
+      label: { ro: 'Vedere de pe Balcon', en: 'Balcony View' },
+    },
+    // Duplex
+    {
+      src: 'images/duplex.jpg',
+      alt: 'Duplex',
+      category: 'duplex',
+      label: { ro: 'Duplex', en: 'Duplex' },
+      specs: { rooms: '4', area: '90 mp', price: '1.500 €/mp' },
+    },
+    {
+      src: 'images/duplex-2.jpeg',
+      alt: 'Duplex in constructie',
+      category: 'duplex',
+      label: { ro: 'Duplex - Vedere Frontală', en: 'Duplex - Front View' },
+      specs: { rooms: '4', area: '90 mp', price: '1.500 €/mp' },
+    },
+    // Development
     {
       src: 'images/ansamblu-aerial.jpg',
       alt: 'Ansamblu rezidential - vedere aeriana',
@@ -62,35 +83,20 @@ export class App {
       category: 'development',
       label: { ro: 'Ansamblu Rezidențial - Stradă', en: 'Residential Development - Street' },
     },
+    // Individual houses - La comandă
     {
-      src: 'images/balcon-vedere.jpg',
-      alt: 'Vedere de pe balcon',
-      category: 'apartments',
-      label: { ro: 'Vedere de pe Balcon', en: 'Balcony View' },
-    },
-    {
-      src: 'images/duplex-2.jpeg',
-      alt: 'Duplex in constructie',
-      category: 'duplex',
-      label: { ro: 'Duplex - Vedere Frontală', en: 'Duplex - Front View' },
-    },
-    {
-      src: 'images/casa-curte.jpeg',
-      alt: 'Casa individuala cu curte',
+      src: 'images/casa-garage.jpg',
+      alt: 'Casa individuala cu garaj',
       category: 'houses',
-      label: { ro: 'Casă Individuală cu Curte', en: 'Individual House with Yard' },
+      label: { ro: 'Casă Individuală cu Garaj', en: 'Individual House with Garage' },
+      specs: { rooms: 'La comandă', area: '', price: '' },
     },
     {
-      src: 'images/bloc-frontal.jpeg',
-      alt: 'Bloc de apartamente - vedere frontala',
-      category: 'apartments',
-      label: { ro: 'Bloc de Apartamente - Frontal', en: 'Apartment Building - Front' },
-    },
-    {
-      src: 'images/bloc-lateral.jpeg',
-      alt: 'Bloc de apartamente - vedere laterala',
-      category: 'apartments',
-      label: { ro: 'Bloc de Apartamente - Lateral', en: 'Apartment Building - Side' },
+      src: 'images/casa-individuala.jpg',
+      alt: 'Casa individuala',
+      category: 'houses',
+      label: { ro: 'Casă Individuală', en: 'Individual House' },
+      specs: { rooms: 'La comandă', area: '', price: '' },
     },
   ];
 
